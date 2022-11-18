@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+ asesorias-microservicios:
+  container_name: 'asesorias-microservicios'
+  image: oscarmantilla/asesorias-core:1.0
+  build:
+   context: .
+  ports:
+   - "5001:3001"
+  networks:
+   - asesorias
+networks:
+ asesorias:
