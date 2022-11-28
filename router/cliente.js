@@ -38,6 +38,7 @@ router.post('/', async function (req, res){
 });
 
 router.get('/', async function (req, res){
+    console.log("Servidor actual : ", process.env.HOST);
     try {
         const clientes = await Cliente.find();
         res.send(clientes);

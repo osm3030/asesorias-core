@@ -1,13 +1,39 @@
 version: '3.7'
 services:
- asesorias-microservicios:
-  container_name: asesorias-core-sin-get
-  image: oscarmantilla/asesorias-core-sin-get:1.0
+ app-asesorias-sin-get00:
+  container_name: app-asesorias-sin-get00
+  image: oscarmantilla/app-asesorias-sin-get00:1.0
   build:
    context: .
   ports:
-   - 4000:4000
+   - 6036:4000
   networks:
-   - asesorias-core-red
+   - app-asesorias-sin-get
+  environment:
+   HOST: app-asesorias-sin-get00
+ app-asesorias-sin-get01:
+  container_name: app-asesorias-sin-get01
+  image: oscarmantilla/app-asesorias-sin-get01:1.0
+  build:
+   context: .
+  ports:
+   - 6037:4000
+  networks:
+   - app-asesorias-sin-get
+  environment:
+   HOST: app-asesorias-sin-get01
+ load-balancer:
+  container_name: nginxsinget
+  image: oscarmantilla/nginxsinget:1.0
+  build:
+   context: ./load-balancer
+  ports:
+   - 6038:80
+  networks:
+   - app-asesorias-sin-get
+  depends_on:
+   - app-asesorias-sin-get00
+   - app-asesorias-sin-get01
+  restart: always
 networks:
- asesorias-core-red:
+  app-asesorias-sin-get:

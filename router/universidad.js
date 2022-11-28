@@ -5,6 +5,7 @@ const { validarProyecto } = require('../helpers/validar-proyecto');
 const router = Router();
 
 router.get('/', async function(req, res){
+    console.log("Servidor actual : ", process.env.HOST);
     try {
         const universidades = await Universidad.find();
         res.send(universidades);
