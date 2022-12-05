@@ -14,8 +14,6 @@ services:
  app-asesorias-sin-get01:
   container_name: app-asesorias-sin-get01
   image: oscarmantilla/app-asesorias-sin-get01:1.0
-  build:
-   context: .
   ports:
    - 6037:4000
   networks:
